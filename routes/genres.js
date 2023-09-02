@@ -31,7 +31,7 @@ const router = express.Router();
 //Get all genres 
 //Alternative way calling a middleware function to handle errors
 router.get('/', async (req, res) => {
-    //throw new Error('Could not get the genres.');        
+    //throw new Error('Could not get the genres.');            
     const genres = await Genre.find().sort('name');
     res.send(genres);
 });
@@ -56,8 +56,8 @@ router.get('/:id', validateObjectId, async (req, res) => {
 });
 
 //Create a single genre
-router.post('/', auth, async (req, res) => {
-    console.log('test');
+router.post('/',  async (req, res) => {
+// router.post('/', auth, async (req, res) => {
     const { error } = validateGenre(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 

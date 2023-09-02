@@ -21,7 +21,8 @@ router.get('/me', auth, async (req, res) => {
 });
 
 //Create a single user
-router.post('/', auth, async (req, res) => {
+router.post('/', async (req, res) => {
+    // router.post('/', auth, async (req, res) => {
 
     const { error } = validateUser(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -42,7 +43,10 @@ router.post('/', auth, async (req, res) => {
     const token = user.generateAuthToken();
 
     //const token = jwt.sign({ _id: user._id }, config.get('jwtPrivateKey') );
-    res.header('x-auth-token', token).send(_.pick(user, ['name', 'email']));
+    res
+        .header('x-auth-token', token)
+        .header('access-control-expose-headers', 'x-auth-token')
+        .send(_.pick(user, ['name', 'email']));
     //res.send( _.pick( user, ['name', 'email'] ) );    
 
     //    res.send(`User created correctly: ${user.name, user.email}.`);

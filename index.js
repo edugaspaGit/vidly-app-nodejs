@@ -5,6 +5,14 @@ const winston = require('winston');
 const express = require('express');
 const app = express();
 
+// Add middleware to enable CORS
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+  });
+
 const logger = winston.createLogger({
     transports: [
         new winston.transports.Console(),        
@@ -17,7 +25,7 @@ require('./startup/db')(); //DB
 require('./startup/config')();//Config
 require('./startup/validation')();//Joi validations
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3900;
 const server = app.listen(port, () => logger.info(`Listening to Port ${port}...`));
 
 module.exports = server;

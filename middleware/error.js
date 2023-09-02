@@ -25,6 +25,7 @@ const logger = winston.createLogger({
 });
 
 module.exports = function (err, req, res, next) {
+    console.log('test1');
     logger.error(err.message, err);
     // 0 - error
     // 1 - warn

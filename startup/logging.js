@@ -14,8 +14,7 @@ module.exports = function () {
     //     });
     //     logger.error(ex.message);
     //     process.exit(1);
-    // })
-
+    // })   
     //winston.exceptions.handle manages the uncaughtExceptions
     winston.exceptions.handle(
         new winston.transports.Console(),
@@ -40,7 +39,7 @@ module.exports = function () {
         // });
         // logger.error(ex.message);
         // process.exit(1);
-        //replace this code with:
+        //replace this code with:        
         throw ex;
         // to trigger the winston exceptions handler
     })
