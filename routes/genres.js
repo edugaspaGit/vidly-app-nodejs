@@ -56,8 +56,8 @@ router.get('/:id', validateObjectId, async (req, res) => {
 });
 
 //Create a single genre
-router.post('/',  async (req, res) => {
-// router.post('/', auth, async (req, res) => {
+router.post('/', async (req, res) => {
+    // router.post('/', auth, async (req, res) => {
     const { error } = validateGenre(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 

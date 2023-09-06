@@ -8,8 +8,7 @@ const express = require('express');
 const router = express.Router();
 
 //Logg with the User name and password
-router.post('/', async (req, res)=> {    
-    console.log('test2');
+router.post('/', async (req, res)=> {        
     const { error } = validate(req.body);    
     if (error) return res.status(400).send(error.details[0].message);          
     

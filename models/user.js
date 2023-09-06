@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const boolean = require('joi/lib/types/boolean');
 
-const userSchema = new mongoose.Schema({    
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -25,15 +25,15 @@ const userSchema = new mongoose.Schema({
         minlength: 5,
         maxlength: 100
     },
-    isAdmin: Boolean    
+    isAdmin: Boolean
 });
 
-userSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, config.get('jwtPrivateKey') );
+userSchema.methods.generateAuthToken = function () {
+    const token = jwt.sign({ _id: this._id, name: this.name, email: this.email, isAdmin: this.isAdmin }, config.get('jwtPrivateKey'));
     return token;
 }
 
-const User = mongoose.model( 'User', userSchema );
+const User = mongoose.model('User', userSchema);
 
 function validateUser(user) {
     const schema = {
