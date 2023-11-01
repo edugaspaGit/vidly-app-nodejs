@@ -32,7 +32,7 @@ const logger = winston.createLogger({
 require('./startup/logging')(); //uncaught & unhandled Exceptions
 require('./startup/routes')(app); //Routes
 require('./startup/db')(); //DB
-require('./startup/config')();//Config
+//require('./startup/config')();//Config
 require('./startup/validation')();//Joi validations
 
 const port = process.env.PORT || 3900;
