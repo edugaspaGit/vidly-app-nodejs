@@ -35,7 +35,7 @@ require('./startup/db')(); //DB
 //require('./startup/config')();//Config
 require('./startup/validation')();//Joi validations
 
-const port = process.env.PORT || 3900;
+const port = process.env.PORT || 3000;
 // const port = process.env.PORT || 3900;
 const server = app.listen(port, () => logger.info(`Listening to Port ${port}...`));
 
